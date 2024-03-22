@@ -1,4 +1,4 @@
-package com.feature;
+package com.feature.others;
 
 public class SwitchFeature {
 
@@ -15,4 +15,10 @@ public class SwitchFeature {
     System.out.println(result);
   }
 
+  static String asStringValue(Object anyValue) {
+    return switch (anyValue) {
+      case String str -> str;
+      case null, default ->     "null";
+    };
+  }
 }

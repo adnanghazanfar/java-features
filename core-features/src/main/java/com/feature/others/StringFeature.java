@@ -1,4 +1,4 @@
-package com.feature;
+package com.feature.others;
 
 public class StringFeature {
 

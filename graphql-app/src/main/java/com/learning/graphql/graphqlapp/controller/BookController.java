@@ -5,7 +5,6 @@ import com.learning.graphql.graphqlapp.model.Author;
 import com.learning.graphql.graphqlapp.model.Book;
 import com.learning.graphql.graphqlapp.model.Review;
 import com.learning.graphql.graphqlapp.repo.BookRepository;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -15,12 +14,10 @@ import org.springframework.graphql.data.method.annotation.BatchMapping;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/books")
 public class BookController {
 
   private final BookRepository bookRepository;

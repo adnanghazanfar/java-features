@@ -1,11 +1,11 @@
-package com.feature;
+package com.feature.others;
 
 public class PatternMatchingFeature {
 
   private static String process(Object data) {
     return switch(data) {
       case Integer i when i > 7 -> "It is a number and greater than 7";
-      case Integer i -> "It is a number";
+      case Integer _ -> "It is a number";
       case null -> "It is null";
       case SealedFeature sealedFeature -> "It is a sealedFeature";
       case RecordFeature.Human(String name, _, _) -> STR."It is a human \{name}";
