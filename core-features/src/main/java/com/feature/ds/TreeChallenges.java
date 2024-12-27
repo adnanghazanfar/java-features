@@ -72,6 +72,46 @@ public class TreeChallenges {
 
     }
 
+    public boolean isSymmetric(Tree root) {
+        return isSame(root.left, root.right);
+    }
+
+    public boolean isSame(Tree left, Tree right) {
+
+        if(left == null && right == null)
+            return true;
+
+        return
+                left != null && right != null
+                        && left.data == right.data
+                        && isSame(left.left, right.right)
+                        && isSame(left.right, right.left);
+    }
+
+    public boolean isSameTree(Tree p, Tree q) {
+        if(p == null && q== null)
+            return true;
+        return p != null && q != null
+                        && p.data == q.data
+                        && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+
+    }
+
+    public Tree invertTree(Tree root) {
+
+        if(root == null)
+            return null;
+
+        Tree left = invertTree(root.left);
+        Tree right = invertTree(root.right);
+
+        root.left = right;
+        root.right = left;
+
+        return root;
+
+    }
+
 }
 
 @Data

@@ -93,6 +93,15 @@ public class LinkedListChallenges {
         return head.next;
     }
 
+    public ListNode deleteDuplicates(ListNode head) {
+        if ( head == null) return null;
+        ListNode p = deleteDuplicates(head.next);
+        if (p != null && head.val == p.val)
+            return p;
+        head.next = p;
+        return head;
+    }
+
 }
 
 
