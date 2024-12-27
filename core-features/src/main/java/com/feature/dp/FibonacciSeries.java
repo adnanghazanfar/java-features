@@ -40,7 +40,13 @@ public class FibonacciSeries {
     // Memoization.
     private static int fibonacci(int n, int[] dp) {
         if ( n <= 1 ) return n;
-        return dp[n] = (dp[n-2] != -1 ? dp[n-2] :fibonacci( n-2, dp)) + (dp[n-1] != -1 ? dp[n-1] : fibonacci(n-1, dp));
+
+        // To check if output already exists
+        if (dp[n] != -1) {
+            return dp[n];
+        }
+
+        return dp[n] = fibonacci( n-2, dp) + fibonacci(n-1, dp);
     }
 
 }
