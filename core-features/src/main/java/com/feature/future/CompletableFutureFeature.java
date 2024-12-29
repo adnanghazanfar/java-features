@@ -6,14 +6,6 @@ import java.util.concurrent.ExecutionException;
 public class CompletableFutureFeature {
 
     public static void main() throws ExecutionException, InterruptedException {
-
-        try {
-            if (2 % 2 == 0) {
-                throw new OutOfMemoryError("ss");
-            }
-        }catch (Error e) {
-            System.out.println(e);
-        }
         System.out.println("************** STARTED ***************");
         CompletableFuture cf1 = new CompletableFuture();
         // System.out.println(completableFuture.get()); This will block
@@ -38,7 +30,7 @@ public class CompletableFutureFeature {
 
         CompletableFuture<Account> accountsFuture = CompletableFuture.supplyAsync(() -> {
             sleep(1000);
-            return new Account("NL12IBAN2324234", "Adnan Ghazanfar");
+            return new Account("US12IBAN122324234", "John Doe");
         });
 
         CompletableFuture<Double> balanceFuture = CompletableFuture.supplyAsync(() -> {
@@ -50,9 +42,9 @@ public class CompletableFutureFeature {
         System.out.println(cf4.get());
 
 
-        CompletableFuture<Void> cf5 = accountsFuture.thenCombine(balanceFuture, (account, balance) -> {
-            return account + " has a blanance of" + balance;
-        }).thenAccept(System.out::println);
+        CompletableFuture<Void> cf5 = accountsFuture
+                .thenCombine(balanceFuture, (account, balance) -> account + " has a blanance of" + balance)
+                .thenAccept(System.out::println);
 
 
         CompletableFuture.allOf(cf1, cf2, cf3, cf4, cf5).join();
@@ -64,10 +56,7 @@ public class CompletableFutureFeature {
 
 
     private static void sleep(int ms) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException e) {
-        }
+        try {Thread.sleep(ms);} catch (InterruptedException e) {}
     }
 
     record Account(String iban, String title){}
